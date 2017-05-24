@@ -1,0 +1,45 @@
+﻿@model MediaHouse3.Models.Article
+@{
+    ViewBag.Title = "EditArticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Article</h2>
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <table>
+        <tr>
+            @Html.LabelFor(m => m.articleTitle)
+            @Html.TextBoxFor(m => m.articleTitle)        
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.subHeader)
+            @Html.TextBoxFor(m => m.subHeader)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.articleContent)
+            @Html.TextAreaFor(m => m.articleContent)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.categoryId)
+            @Html.DropDownListFor(m => m.categoryId, new List<SelectListItem> {
+           new SelectListItem{Value = "1", Text="National"},
+           new SelectListItem{Value = "2", Text="Overseas"},
+           new SelectListItem{Value = "3", Text="Sports"},
+           new SelectListItem{Value = "4", Text="Opinion"},
+           new SelectListItem{Value = "5", Text="Travel"},
+           new SelectListItem{Value = "6", Text="Odd"}
+       })
+        </tr>
+    </table>
+
+    <input type="submit" value="Save Changes" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

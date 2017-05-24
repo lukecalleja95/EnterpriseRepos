@@ -1,0 +1,57 @@
+﻿@model MediaHouse3.Models.ArticleModel
+@{
+    ViewBag.Title = "Create Article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Article</h2>
+
+@using (Html.BeginForm()) {
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <table>
+        <tr>Creating article by @Html.TextBoxFor(m => m.username, new { @Value = User.Identity.Name, @readonly = "readonly" })</tr>
+
+        <tr>
+            @Html.LabelFor(m => m.articleTitle)
+            @Html.TextBoxFor(m => m.articleTitle)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.subHeader)
+            @Html.TextBoxFor(m => m.subHeader)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.articleContent)
+            @Html.TextAreaFor(m => m.articleContent)
+        </tr>
+        <!-- Date created will get datetime.now via the controller-->
+        <tr>
+            @Html.LabelFor(m => m.imageArticle)
+            <input type="file" name="imageArticle"/>
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.isBreaking)
+            @Html.CheckBoxFor(m => m.isBreaking)
+        </tr>
+        <tr>
+            @Html.LabelFor(m => m.categories)
+            @Html.DropDownListFor(m => m.categories, new List<SelectListItem> { 
+           new SelectListItem{Value = "1", Text="National"},
+           new SelectListItem{Value = "2", Text="Overseas"},
+           new SelectListItem{Value = "3", Text="Sports"},
+           new SelectListItem{Value = "4", Text="Opinion"},
+           new SelectListItem{Value = "5", Text="Travel"},
+           new SelectListItem{Value = "6", Text="Odd"}
+       })
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Create Article" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

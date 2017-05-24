@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Articles</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Subheader</th>
+        <th>Date Created</th>
+        <th>Written By</th>
+        <th>Category</th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var article in Model)
+    {
+        <tr>
+            <td>@article.articleTitle</td>
+            <td>@article.subHeader</td>
+            <td>@article.dateCreated</td>
+            <td>@article.UserId</td>
+            <td>@article.categoryId</td>
+            <td>
+                @Html.ActionLink("View", "ViewArticle", new { title = article.articleTitle })
+                @if (HttpContext.Current.User.Identity.IsAuthenticated) {
+                    @Html.ActionLink("Edit", "EditArticle", new { title = article.articleTitle })
+                    @Html.ActionLink("Delete", "DeleteArticle", new { title = article.articleTitle }, new { onclick = "return window.confirm('Are you sure you want to delete this article?')" })
+                }
+            </td>
+        </tr>
+    }
+</table>

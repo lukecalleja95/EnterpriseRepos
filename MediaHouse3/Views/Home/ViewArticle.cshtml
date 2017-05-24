@@ -1,0 +1,11 @@
+﻿@model MediaHouse3.Models.Article
+@{
+    ViewBag.Title = "ViewArticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.DisplayFor(m => m.articleTitle)</h1>
+<h3>@Html.DisplayFor(m => m.subHeader)</h3>
+<p style="font-size: 10px">@Html.DisplayFor(m => m.UserId) @Html.DisplayFor(m => m.categoryId)</p>
+
+<p>@Html.DisplayFor(m => m.articleContent)</p>

@@ -1,0 +1,15 @@
+﻿@model MediaHouse3.Models.UserProfile
+@{
+    ViewBag.Title = "ViewAuthor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.DisplayFor(m => m.UserName): Profile</h1>
+
+<h3>Full Name: </h3>
+<p>@Html.DisplayFor(m => m.firstName) @Html.DisplayFor(m => m.lastName)</p>
+
+<h3>Profile Description</h3>
+<p>@Html.DisplayFor(m => m.profileDesc)</p>
+
+<h3>Recent Articles:</h3>
