@@ -25,6 +25,10 @@
             @Html.TextAreaFor(m => m.articleContent)
         </tr>
         <tr>
+            @Html.LabelFor(m => m.isBreaking)
+            @Html.CheckBoxFor(m => m.isBreaking)
+        </tr>
+        <tr>
             @Html.LabelFor(m => m.categoryId)
             @Html.DropDownListFor(m => m.categoryId, new List<SelectListItem> {
            new SelectListItem{Value = "1", Text="National"},

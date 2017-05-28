@@ -444,7 +444,7 @@ namespace MediaHouse3.Controllers
         //Edit an article
         [HttpPost]
         [Authorize]
-        public ActionResult EditArticle(string title, string subHeader, string articleContent, int categoryId)
+        public ActionResult EditArticle(string title, string subHeader, string articleContent, int categoryId, bool isBreaking)
         {
             try
             {
@@ -454,10 +454,17 @@ namespace MediaHouse3.Controllers
                 int articleId = a.articleId;
                 //a = GetArticleId(articleId);
 
-                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Article] SET articleTitle = @articleTitle, subHeader = @subHeader, articleContent = @articleContent, categoryId = @categoryId WHERE articleId = @articleId", conn);
+                int isBreakingDb = 0;
+                if (isBreaking == true)
+                {
+                    isBreakingDb = 1;
+                }
+
+                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Article] SET articleTitle = @articleTitle, subHeader = @subHeader, articleContent = @articleContent, isBreaking = @isBreaking, categoryId = @categoryId WHERE articleId = @articleId", conn);
                 cmd.Parameters.AddWithValue("@articleTitle", title);
                 cmd.Parameters.AddWithValue("@subHeader", subHeader);
                 cmd.Parameters.AddWithValue("@articleContent", articleContent);
+                cmd.Parameters.AddWithValue("@isBreaking", isBreakingDb);
                 cmd.Parameters.AddWithValue("@articleId", articleId);
                 cmd.Parameters.AddWithValue("@categoryId", categoryId);
                 cmd.ExecuteNonQuery();
